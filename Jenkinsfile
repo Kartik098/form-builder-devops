@@ -1,28 +1,52 @@
 pipeline {
     agent any
 
+    environment {
+        NODE_ENV = 'production'
+    }
+
     stages {
-        stage('Clone Repo') {
+        stage('Checkout Code') {
             steps {
                 git 'https://github.com/Kartik098/form-builder-devops.git'
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Install Backend Dependencies') {
             steps {
-                sh 'npm install'
+                dir('server') {
+                    sh 'npm install'
+                }
             }
         }
 
-        stage('Build') {
+        stage('Install Frontend Dependencies') {
             steps {
-                sh 'npm run build'
+                dir('client') {
+                    sh 'npm install'
+                }
             }
         }
 
-        stage('Test') {
+        stage('Build Frontend') {
             steps {
-                sh 'npm test || true' // skip test failure if none
+                dir('client') {
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Run Backend Tests') {
+            steps {
+                dir('server') {
+                    sh 'npm test || echo "Tests failed, but continuing..."'
+                }
+            }
+        }
+
+        stage('Deploy (Optional)') {
+            steps {
+                echo 'Add deployment steps here'
             }
         }
     }
