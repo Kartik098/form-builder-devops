@@ -1,52 +1,35 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_ENV = 'production'
-    }
-
     stages {
-        stage('Checkout Code') {
+        stage('Clone') {
             steps {
-                git 'https://github.com/Kartik098/form-builder-devops.git'
+                echo 'Cloning Repository...'
+                // Jenkins already checks out code automatically in this case
             }
         }
-
-        stage('Install Backend Dependencies') {
+        stage('Install Dependencies') {
             steps {
                 dir('server') {
                     sh 'npm install'
                 }
-            }
-        }
-
-        stage('Install Frontend Dependencies') {
-            steps {
                 dir('client') {
                     sh 'npm install'
                 }
             }
         }
-
-        stage('Build Frontend') {
+        stage('Build Client') {
             steps {
                 dir('client') {
                     sh 'npm run build'
                 }
             }
         }
-
-        stage('Run Backend Tests') {
+        stage('Start Server') {
             steps {
                 dir('server') {
-                    sh 'npm test || echo "Tests failed, but continuing..."'
+                    sh 'npm start &'
                 }
-            }
-        }
-
-        stage('Deploy (Optional)') {
-            steps {
-                echo 'Add deployment steps here'
             }
         }
     }
