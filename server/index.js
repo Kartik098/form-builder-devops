@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect('mongodb://localhost:27017/formbuilder', {
+mongoose.connect('mongodb://mongo:27017/formbuilder', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
