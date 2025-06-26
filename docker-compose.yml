@@ -7,10 +7,23 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    restart: unless-stopped
+
+  backend:
+    build: ./server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run dev
+    depends_on:
+      - mongo
+    restart: unless-stopped
 
   frontend:
-    build:
-      context: ./client
+    build: ./client
     ports:
       - "3000:3000"
     volumes:
@@ -20,12 +33,7 @@ services:
     command: npm run dev
     depends_on:
       - backend
+    restart: unless-stopped
 
-  backend:
-    build: ./server
-    ports:
-      - "5000:5000"
-    volumes:
-      - ./server:/app
 volumes:
   mongo_data:
