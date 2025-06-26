@@ -17,7 +17,11 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use(cors());
+
+app.use(cors({
+  origin: 'http://54.145.126.112:3000',
+  credentials: true, // if you're using cookies or sessions
+}));
 app.use(express.json());
 app.use(passport.initialize());
 app.use(passport.session());
