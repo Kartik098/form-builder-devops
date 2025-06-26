@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
 
   // This is optional and only relevant in dev mode
-  allowedDevOrigins: ['http://54.145.126.112'],
+  allowedDevOrigins: ['http://54.145.126.112:3000'],
 
   // This works in production
   headers: async () => [
