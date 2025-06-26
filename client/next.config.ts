@@ -2,10 +2,30 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  allowedDevOrigins: ['http://54.145.126.112'], // ✅ This is correct
+
+  // This is optional and only relevant in dev mode
+  allowedDevOrigins: ['http://54.145.126.112'],
+
+  // This works in production
+  headers: async () => [
+    {
+      source: "/_next/:path*",
+      headers: [
+        {
+          key: "Access-Control-Allow-Origin",
+          value: "*", // or set your domain specifically
+        },
+        {
+          key: "Access-Control-Allow-Methods",
+          value: "GET,OPTIONS",
+        },
+      ],
+    },
+  ],
 };
 
 export default nextConfig;
+
 // import type { NextConfig } from "next";
 
 // const nextConfig: NextConfig = {
