@@ -31,7 +31,7 @@ mongoose.connect('mongodb://mongo:27017/formbuilder', {
 app.use('/api/forms',formRoutes);
 app.use('/api/auth', authRoutes);
 
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running at http://0.0.0.0:${PORT}`);
 });
 
