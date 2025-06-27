@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import { useAuth } from "../../hooks/useAuth";
+import { api } from "../../lib/api";
 
 const fieldTypes = [
   { label: "Short Answer", type: "short" },
@@ -75,11 +76,12 @@ const FormBuilder = () => {
   };
 
   try {
-    const response = await fetch('http://localhost:5000/api/forms/create', {
+    const response = await api(`/api/auth/create`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
+   
 
     if (response.ok) {
       alert('Form schema saved successfully!');
