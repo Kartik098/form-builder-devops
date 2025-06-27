@@ -76,7 +76,7 @@ const FormBuilder = () => {
   };
 
   try {
-    const response = await api(`/api/auth/create`, {
+    const response = await api(`/api/forms/create`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
