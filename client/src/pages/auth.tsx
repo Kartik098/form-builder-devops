@@ -34,6 +34,7 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     if (mode === 'login') {
       localStorage.setItem("authToken", res.token);
+      debugger
       localStorage.setItem("user", JSON.stringify(res.user));
       router.push("/");
     } else {
