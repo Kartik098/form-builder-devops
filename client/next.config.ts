@@ -5,18 +5,15 @@ const nextConfig: NextConfig = {
 
   // This is optional and only relevant in dev mode
   allowedDevOrigins: ['http://54.145.126.112:3000'],
- "rules": {
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
-  },
-  // This works in production
+
+  // This works in production (optional CORS headers for static assets)
   headers: async () => [
     {
       source: "/_next/:path*",
       headers: [
         {
           key: "Access-Control-Allow-Origin",
-          value: "*", // or set your domain specifically
+          value: "*", // Consider locking this down to your domain in production
         },
         {
           key: "Access-Control-Allow-Methods",
@@ -28,19 +25,3 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
-// import type { NextConfig } from "next";
-
-// const nextConfig: NextConfig = {
-//   reactStrictMode: true,
-//  allowedDevOrigins: ['http://54.145.126.112'],
-//   webpackDevMiddleware: config => {
-//     config.watchOptions = {
-//       poll: 1000,           // check for file changes every second
-//       aggregateTimeout: 300 // delay before rebuilding
-//     };
-//     return config;
-//   },
-// };
-
-// export default nextConfig;
