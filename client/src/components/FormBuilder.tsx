@@ -83,12 +83,13 @@ const FormBuilder = () => {
     });
    
 
-    if (response.ok) {
+    
       alert('Form schema saved successfully!');
-    } else {
-      alert('Failed to save form schema');
-    }
+   
+    
   } catch (err) {
+      alert('Failed to save form schema');
+
     console.error(err);
     alert('An error occurred.');
   }
