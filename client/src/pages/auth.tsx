@@ -48,7 +48,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
 };
   const handleOAuth = (provider: 'google' | 'github') => {
-    window.location.href = `http://localhost:5000/api/auth/${provider}`;
+    window.location.href = `http://backend:5000/api/auth/${provider}`;
   };
 
   return (

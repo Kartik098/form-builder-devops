@@ -52,7 +52,7 @@ router.get(
       email: user.email || "",
     }).toString();
 
-    res.redirect(`http://localhost:3000/auth/callback?${query}`);
+    res.redirect(`http://frontend:3000/auth/callback?${query}`);
   }
 );
 
@@ -75,7 +75,7 @@ router.get(
       email: user.email || "",
     }).toString();
 
-    res.redirect(`http://localhost:3000/auth/callback?${query}`);
+    res.redirect(`http://frontend:3000/auth/callback?${query}`);
   }
 );
 module.exports = router;

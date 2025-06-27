@@ -7,7 +7,7 @@ const axios = require("axios")
 const User = require("../schemas/userSchema.js");
 const Account = require("../schemas/accountSchema.js");
 
-const CLIENT_URL = "http://localhost:3000"; // Frontend
+const CLIENT_URL = "http://backend:3000"; // Frontend
 
 passport.serializeUser((user, done) => {
   done(null, user._id);
@@ -68,7 +68,7 @@ passport.use(
     {
       clientID: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-      callbackURL: "http://localhost:5000/api/auth/github/callback",
+      callbackURL: "http://backend:5000/api/auth/github/callback",
     },
    async (accessToken, refreshToken, profile, done) => {
       try {
