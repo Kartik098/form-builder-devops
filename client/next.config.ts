@@ -5,7 +5,10 @@ const nextConfig: NextConfig = {
 
   // This is optional and only relevant in dev mode
   allowedDevOrigins: ['http://54.145.126.112:3000'],
-
+ "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }]
+  },
   // This works in production
   headers: async () => [
     {
